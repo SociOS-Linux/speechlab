@@ -11,3 +11,9 @@ Makefile.bak.*
 __pycache__/
 *.pyc
 scratch/
+Brewfile.diar
+locks/
+fix_makefile.sh
+fix_makefile_indent.sh
+fix_makefile_indentation.sh
+main

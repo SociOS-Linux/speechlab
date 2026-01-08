@@ -14,3 +14,7 @@ diar-smoketest:
 
 diar-shell:
     ./scripts/diar_shell.sh
+
+.PHONY: validate
+validate:
+	./tools/validate.sh
