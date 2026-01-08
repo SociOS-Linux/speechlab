@@ -1,0 +1,10 @@
+capability_id: "socio.speachlab"
+version: "0.1.0"
+status: "draft"
+description: "Linux-native capability repo for SourceOS: speachlab"
+entrypoints:
+  validate:
+    command: "make validate"
+contracts:
+  rpc_dir: "rpc"
+  schema_dir: "schemas"

@@ -1,0 +1,23 @@
+{
+  "$id": "socio.speachlab.event.v0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "ts": {
+      "description": "ISO-8601 timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_type",
+    "ts"
+  ],
+  "title": "speachlab Event (v0)",
+  "type": "object"
+}

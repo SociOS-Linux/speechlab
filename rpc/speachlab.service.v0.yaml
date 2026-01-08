@@ -1,0 +1,3 @@
+service: "socio.speachlab.v0"
+transport: "triRPC"
+methods: []
