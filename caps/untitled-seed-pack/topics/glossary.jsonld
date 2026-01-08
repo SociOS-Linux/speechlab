@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "sk": "https://example.org/schema#",
+    "GlossaryEntry": "sk:GlossaryEntry",
+    "term": "sk:term",
+    "topic": "sk:topic",
+    "synonym": "sk:synonym",
+    "mapsToSkill": "sk:mapsToSkill",
+    "mapsToTool": "sk:mapsToTool"
+  },
+  "@graph": [
+    {
+      "@type": "GlossaryEntry",
+      "term": "conduit_token",
+      "topic": "/auth",
+      "synonym": [
+        "bearer token",
+        "session token"
+      ],
+      "mapsToSkill": [
+        "auth.conduit_token.v1"
+      ],
+      "mapsToTool": [
+        "get_conduit_token"
+      ]
+    },
+    {
+      "@type": "GlossaryEntry",
+      "term": "items list",
+      "topic": "/workspace",
+      "synonym": [
+        "inbox list",
+        "threads list",
+        "paged list"
+      ],
+      "mapsToSkill": [
+        "list.items.v1"
+      ],
+      "mapsToTool": [
+        "list_items"
+      ]
+    },
+    {
+      "@type": "GlossaryEntry",
+      "term": "hydration error",
+      "topic": "/ux",
+      "synonym": [
+        "recoverable error",
+        "mismatch"
+      ],
+      "mapsToSkill": [
+        "ux.hydration_diagnostics.v1"
+      ],
+      "mapsToTool": [
+        "log_hydration_event"
+      ]
+    }
+  ]
+}

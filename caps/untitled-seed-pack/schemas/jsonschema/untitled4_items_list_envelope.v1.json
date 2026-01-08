@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/untitled4/items_list_envelope.v1.json",
+  "title": "Items list response envelope (Untitled 4)",
+  "type": "object",
+  "required": [
+    "total",
+    "limit",
+    "offset",
+    "items"
+  ],
+  "properties": {
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "offset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "snippet": {
+            "type": "string"
+          },
+          "gizmo_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mapping": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "blocked_urls": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "current_node": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "conversation_origin": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sugar_item_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sugar_item_visible": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

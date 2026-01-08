@@ -1,0 +1,27 @@
+{
+  "slash_topics": [
+    {
+      "topic": "/auth",
+      "description": "Authentication/session primitives and secret handling."
+    },
+    {
+      "topic": "/workspace",
+      "description": "Workspace and list/pagination operations."
+    },
+    {
+      "topic": "/ux",
+      "description": "Client bootstrap, hydration, and recoverable error diagnostics."
+    },
+    {
+      "topic": "/ops",
+      "description": "Execution telemetry, reliability, and governance workflows."
+    }
+  ],
+  "routing_defaults": {
+    "unknown_topic_behavior": "infer_with_topic_model_then_gate",
+    "max_tools_per_task": 12,
+    "must_redact": [
+      "conduit_token"
+    ]
+  }
+}

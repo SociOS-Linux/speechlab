@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "TaskCompleted",
+  "namespace": "agentbus.v1",
+  "fields": [
+    {
+      "name": "trace_id",
+      "type": "string"
+    },
+    {
+      "name": "task_id",
+      "type": "string"
+    },
+    {
+      "name": "topic",
+      "type": "string"
+    },
+    {
+      "name": "timestamp_ms",
+      "type": "long"
+    },
+    {
+      "name": "outcome",
+      "type": {
+        "type": "enum",
+        "name": "Outcome",
+        "symbols": [
+          "success",
+          "failure",
+          "partial"
+        ]
+      }
+    },
+    {
+      "name": "summary",
+      "type": "string"
+    }
+  ]
+}

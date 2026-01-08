@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package trirpc.v1;
+
+service Planner {
+  rpc Plan(TaskRequest) returns (TaskPlan);
+}
+
+service Executor {
+  rpc Execute(TaskPlan) returns (TaskResult);
+  rpc CallTool(ToolCall) returns (ToolResult);
+}
+
+message TaskRequest {
+  string task_id = 1;
+  string trace_id = 2;
+  string topic = 3;
+  string intent = 4;
+  bytes context_json = 5;
+  Constraints constraints = 6;
+}
+
+message Constraints {
+  int32 time_budget_ms = 1;
+  repeated string safety = 2;
+  repeated string required_caps = 3;
+}
+
+message TaskPlan {
+  string task_id = 1;
+  string trace_id = 2;
+  string topic = 3;
+  repeated ToolCall steps = 4;
+}
+
+message ToolCall {
+  string trace_id = 1;
+  string span_id = 2;
+  string tool_name = 3;
+  bytes input_json = 4;
+  string idempotency_key = 5;
+  repeated string redaction_keys = 6;
+}
+
+message ToolResult {
+  string trace_id = 1;
+  string span_id = 2;
+  string tool_name = 3;
+  int32 status_code = 4;
+  bytes output_json = 5;
+  repeated Evidence evidence = 6;
+}
+
+message Evidence {
+  string kind = 1;
+  string ref = 2;
+  string note = 3;
+}
+
+message TaskResult {
+  string task_id = 1;
+  string trace_id = 2;
+  string topic = 3;
+  string outcome = 4;
+  bytes answer_json = 5;
+  repeated Evidence evidence = 6;
+}

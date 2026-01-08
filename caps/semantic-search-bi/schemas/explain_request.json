@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExplainRequest",
+  "type": "object",
+  "required": [
+    "query",
+    "doc_id"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "minLength": 1
+    },
+    "doc_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "hybrid",
+        "vector",
+        "lexical"
+      ],
+      "default": "hybrid"
+    }
+  },
+  "additionalProperties": false
+}

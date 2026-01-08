@@ -1,0 +1,104 @@
+{
+  "mcp_version": "0.1",
+  "tools": [
+    {
+      "name": "get_conduit_token",
+      "description": "Return status + conduit_token (Untitled 3).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "tree://docs/trees/untitled_3_tree_enriched.json#untitled-3",
+      "redactionKeys": [
+        "conduit_token"
+      ]
+    },
+    {
+      "name": "list_items",
+      "description": "Paginated list envelope (Untitled 4).",
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "limit",
+          "offset"
+        ],
+        "properties": {
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "filters": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "tree://docs/trees/untitled_4_tree_enriched.json#untitled-4"
+    },
+    {
+      "name": "log_hydration_event",
+      "description": "Emit hydration diagnostics event (Untitled 9 intent-level).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://example.org/schemas/untitled9/hydration_diagnostics_event.v1.json",
+        "title": "Hydration diagnostics event (Untitled 9 intent-level)",
+        "type": "object",
+        "required": [
+          "event_type",
+          "timestamp_ms"
+        ],
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "hydration_error",
+              "recoverable_error",
+              "bootstrap_info"
+            ]
+          },
+          "timestamp_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "root_selector": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "e.g., #root"
+          },
+          "hints": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      },
+      "outputSchemaRef": "tree://docs/trees/untitled_9_tree_enriched.json#untitled-9"
+    }
+  ]
+}

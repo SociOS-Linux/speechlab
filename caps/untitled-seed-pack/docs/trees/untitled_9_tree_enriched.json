@@ -1,0 +1,73 @@
+{
+  "id": "untitled-9",
+  "label": "Untitled 9: React hydration + error logging bootstrap",
+  "symbol": "Untitled 9",
+  "doc": "Bootstraps a React app by hydrating server-rendered HTML into a live client app, with aggressive error logging (especially hydration errors) and a global handle to the root for debugging.",
+  "children": [
+    {
+      "id": "u9-globals",
+      "label": "Globals & inputs",
+      "symbol": "window.*",
+      "doc": "Reads state/config injected by server-side rendering and exposes a few debugging handles on window.",
+      "children": []
+    },
+    {
+      "id": "u9-logging",
+      "label": "Logging + hydration error diagnostics",
+      "symbol": "console.*",
+      "doc": "Captures hydration errors and logs them with contextual hints so mismatches between server markup and client render can be diagnosed.",
+      "children": [
+        {
+          "id": "u9-console-preamble",
+          "label": "App init logs",
+          "symbol": "console.log(...)",
+          "doc": "Writes a startup banner and initial state presence info to the console.",
+          "children": []
+        },
+        {
+          "id": "u9-onrecover",
+          "label": "onRecoverableError handler",
+          "symbol": "onRecoverableError(err, info)",
+          "doc": "React calls this for recoverable errors during hydration/render. The code logs the error and tries to detect \"Hydration failed\" patterns to add guidance.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "u9-hydrate",
+      "label": "React hydration root",
+      "symbol": "hydrateRoot(...)",
+      "doc": "Attaches React to existing DOM (#root) and renders <App/> with initial state, using startTransition to avoid blocking.",
+      "children": [
+        {
+          "id": "u9-starttransition",
+          "label": "startTransition wrapper",
+          "symbol": "startTransition(() => ...)",
+          "doc": "Schedules the hydration as a transition, allowing the UI to stay responsive during initial work.",
+          "children": []
+        },
+        {
+          "id": "u9-rootdom",
+          "label": "DOM mount: document.getElementById('root')",
+          "symbol": "#root",
+          "doc": "Selects the server-rendered container. Must match server output to avoid hydration mismatch.",
+          "children": []
+        },
+        {
+          "id": "u9-app",
+          "label": "<App initialState={...} />",
+          "symbol": "App",
+          "doc": "Top-level React component. Receives initial state so client render matches server HTML.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "u9-rel",
+      "label": "How nodes relate",
+      "symbol": "edges",
+      "doc": "Globals feed hydration; hydration emits recoverable errors; logging wraps those errors and provides debugging info. Exposing __ROOT__ links runtime state back to tooling.",
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/untitled3/status_conduit_token.v1.json",
+  "title": "Status response with conduit token (Untitled 3)",
+  "type": "object",
+  "required": [
+    "status",
+    "conduit_token"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok"
+      ]
+    },
+    "conduit_token": {
+      "type": "string",
+      "minLength": 10,
+      "description": "JWT-like bearer token; MUST be redacted in logs."
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,37 @@
+{
+  "id": "untitled-3",
+  "label": "Untitled 3: Status response with conduit token",
+  "symbol": "Untitled 3",
+  "doc": "A minimal JSON response indicating success and carrying a conduit (session/auth) token, likely used to authenticate subsequent requests.",
+  "children": [
+    {
+      "id": "u3-status",
+      "label": "status: 'ok'",
+      "symbol": "status",
+      "doc": "Signals the upstream operation completed successfully; downstream code may branch on this value.",
+      "children": []
+    },
+    {
+      "id": "u3-token",
+      "label": "conduit_token (JWT-like)",
+      "symbol": "conduit_token",
+      "doc": "Bearer credential used to authorize later API calls. Its structure resembles a JWT (header.payload.signature) and should be handled as a secret.",
+      "children": [
+        {
+          "id": "u3-token-format",
+          "label": "Token format",
+          "symbol": "xxxxx.yyyyy.zzzzz",
+          "doc": "Three dot-separated base64url segments suggest JWT-style encoding, enabling stateless verification by the server.",
+          "children": []
+        },
+        {
+          "id": "u3-token-risk",
+          "label": "Security notes",
+          "symbol": "\u26a0",
+          "doc": "Do not log this token in plaintext; rotate/expire quickly; bind to device/session if possible.",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

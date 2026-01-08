@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "ToolCalled",
+  "namespace": "agentbus.v1",
+  "fields": [
+    {
+      "name": "trace_id",
+      "type": "string"
+    },
+    {
+      "name": "span_id",
+      "type": "string"
+    },
+    {
+      "name": "tool_name",
+      "type": "string"
+    },
+    {
+      "name": "topic",
+      "type": "string"
+    },
+    {
+      "name": "timestamp_ms",
+      "type": "long"
+    },
+    {
+      "name": "input_redacted_json",
+      "type": "string"
+    }
+  ]
+}

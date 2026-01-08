@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UpsertDocumentsRequest",
+  "type": "object",
+  "required": [
+    "documents"
+  ],
+  "properties": {
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "doc_id",
+          "text"
+        ],
+        "properties": {
+          "doc_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "uri": {
+                "type": "string"
+              },
+              "ingested_at": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "index": {
+      "type": "string",
+      "default": "default"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "upsert",
+        "insert-only",
+        "replace"
+      ],
+      "default": "upsert"
+    }
+  },
+  "additionalProperties": false
+}

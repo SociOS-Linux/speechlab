@@ -1,0 +1,87 @@
+capd_version: 1
+capability_id: "caps.semantic.search-bi"
+capability_version: "1.0.0"
+title: "Semantic Search + BI (Open, Composable)"
+status: "draft"
+
+owners:
+  - "sociosphere/sourceos"
+
+licenses:
+  code: "MIT"
+  docs: "CC-BY-4.0"
+
+summary: |
+  Provides semantic indexing + retrieval + explainable results suitable for BI workflows.
+  Designed to be embedded behind Triune RPC and composed with ingestion, OCR, speech, and analytics caps.
+  Outputs evidence-rich traces for audit and replay.
+
+invariants:
+  - "All request/response payloads MUST validate against schemas/."
+  - "All RPC calls MUST emit an evidence envelope (see schemas/evidence_envelope.json)."
+  - "No proprietary cloud dependency is required; all backends are optional adapters."
+
+interfaces:
+  tritrpc:
+    service: "SemanticSearchService"
+    proto: "rpc/tritrpc/semantic_search.proto"
+    methods:
+      - name: "UpsertDocuments"
+        input_schema: "schemas/upsert_documents_request.json"
+        output_schema: "schemas/upsert_documents_response.json"
+        topics:
+          - "/topics/semantic-search/upsert"
+      - name: "Query"
+        input_schema: "schemas/query_request.json"
+        output_schema: "schemas/query_response.json"
+        topics:
+          - "/topics/semantic-search/query"
+      - name: "Explain"
+        input_schema: "schemas/explain_request.json"
+        output_schema: "schemas/explain_response.json"
+        topics:
+          - "/topics/semantic-search/explain"
+      - name: "Health"
+        input_schema: "schemas/health_request.json"
+        output_schema: "schemas/health_response.json"
+        topics:
+          - "/topics/semantic-search/health"
+
+storage_model:
+  vector_index:
+    required: false
+    notes: |
+      Vector store is a pluggable adapter. Contract does not mandate a vendor.
+      Minimal baseline supports an in-process ANN or brute-force for small corpora.
+  lexical_index:
+    required: false
+    notes: |
+      Optional lexical index for hybrid retrieval (BM25-like). Recommended for BI keyword precision.
+  metadata_store:
+    required: true
+    notes: |
+      Must store document metadata + versioning + provenance references.
+
+evidence:
+  envelope_schema: "schemas/evidence_envelope.json"
+  required_fields:
+    - "trace_id"
+    - "span_id"
+    - "capability_id"
+    - "capability_version"
+    - "ts"
+    - "actor"
+    - "decision"
+    - "hashes"
+
+compatibility:
+  semver: true
+  rules:
+    - "PATCH may add optional fields only."
+    - "MINOR may add new methods and new optional fields; MUST NOT remove or rename."
+    - "MAJOR may break schemas and/or RPC signatures."
+
+examples:
+  - "examples/upsert_documents_request.json"
+  - "examples/query_request.json"
+  - "examples/explain_request.json"

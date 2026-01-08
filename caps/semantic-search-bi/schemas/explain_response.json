@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExplainResponse",
+  "type": "object",
+  "required": [
+    "ok",
+    "doc_id",
+    "explanation"
+  ],
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "doc_id": {
+      "type": "string"
+    },
+    "explanation": {
+      "type": "object",
+      "required": [
+        "summary",
+        "components"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "weight",
+              "detail"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "vector",
+                  "lexical",
+                  "filter",
+                  "rerank"
+                ]
+              },
+              "weight": {
+                "type": "number"
+              },
+              "detail": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

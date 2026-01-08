@@ -1,0 +1,5 @@
+{
+  "query": "disputed charge acme 512.19",
+  "doc_id": "acct:123:txn:9",
+  "mode": "hybrid"
+}

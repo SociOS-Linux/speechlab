@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "cap": "https://example.org/capd#",
+    "Capability": "cap:Capability",
+    "Skill": "cap:Skill",
+    "id": "@id",
+    "name": "cap:name",
+    "version": "cap:version",
+    "skills": "cap:skills",
+    "tools": "cap:tools",
+    "schemas": "cap:schemas",
+    "policies": "cap:policies",
+    "topics": "cap:topics",
+    "docAnchors": "cap:docAnchors"
+  },
+  "@type": "Capability",
+  "@id": "cap:untitled-seed-pack",
+  "name": "Untitled Seed Pack (3/4/9)",
+  "version": "0.1.0",
+  "topics": [
+    "/auth",
+    "/workspace",
+    "/ux",
+    "/ops"
+  ],
+  "skills": [
+    {
+      "@type": "Skill",
+      "@id": "cap:auth.conduit_token.v1",
+      "name": "Auth: Conduit Token",
+      "docAnchors": [
+        "tree://docs/trees/untitled_3_tree_enriched.json#untitled-3"
+      ],
+      "schemas": [
+        "schemas/jsonschema/untitled3_status_conduit_token.v1.json"
+      ],
+      "tools": [
+        "mcp:get_conduit_token"
+      ],
+      "policies": {
+        "logging": "redact(conduit_token)",
+        "storage": "no_plaintext_tokens"
+      }
+    },
+    {
+      "@type": "Skill",
+      "@id": "cap:list.items.v1",
+      "name": "List: Items",
+      "docAnchors": [
+        "tree://docs/trees/untitled_4_tree_enriched.json#untitled-4"
+      ],
+      "schemas": [
+        "schemas/jsonschema/untitled4_items_list_envelope.v1.json"
+      ],
+      "tools": [
+        "mcp:list_items"
+      ],
+      "policies": {
+        "logging": "redact(ids)",
+        "pii": "bounded"
+      }
+    },
+    {
+      "@type": "Skill",
+      "@id": "cap:ux.hydration_diagnostics.v1",
+      "name": "UX: Hydration Diagnostics",
+      "docAnchors": [
+        "tree://docs/trees/untitled_9_tree_enriched.json#untitled-9"
+      ],
+      "schemas": [
+        "schemas/jsonschema/untitled9_hydration_diagnostics_event.v1.json"
+      ],
+      "tools": [
+        "mcp:log_hydration_event"
+      ],
+      "policies": {
+        "logging": "safe",
+        "pii": "none"
+      }
+    }
+  ],
+  "tools": [
+    "mcp/tools.json"
+  ],
+  "schemas": [
+    "schemas/avro/agentbus.v1.ToolCalled.avsc",
+    "schemas/avro/agentbus.v1.ToolReturned.avsc",
+    "schemas/avro/agentbus.v1.TaskCompleted.avsc",
+    "rpc/trirpc.v1.proto"
+  ]
+}

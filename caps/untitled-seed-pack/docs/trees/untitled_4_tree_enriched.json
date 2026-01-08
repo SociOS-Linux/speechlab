@@ -1,0 +1,270 @@
+{
+  "id": "untitled-4",
+  "label": "Untitled 4: Items list response (conversation/context scope metadata)",
+  "symbol": "Untitled 4",
+  "doc": "A paginated API response returning an array of items, each carrying IDs, timestamps, flags, scope metadata, and a 'mapping' payload that links to the current node/template.",
+  "children": [
+    {
+      "id": "u4-pagination",
+      "label": "Pagination envelope",
+      "symbol": "{total, limit, offset}",
+      "doc": "Controls how many items are returned and where in the full result set this page starts.",
+      "children": [
+        {
+          "id": "u4-total",
+          "label": "total",
+          "symbol": "total",
+          "doc": "Total number of matching items across all pages.",
+          "children": []
+        },
+        {
+          "id": "u4-limit",
+          "label": "limit",
+          "symbol": "limit",
+          "doc": "Maximum number of items returned in this response.",
+          "children": []
+        },
+        {
+          "id": "u4-offset",
+          "label": "offset",
+          "symbol": "offset",
+          "doc": "Index into the full result set where this page begins.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "u4-item",
+      "label": "items[] element schema",
+      "symbol": "items[i]",
+      "doc": "Each item represents a single entity (likely a conversation/thread or similar object) with metadata and scope configuration.",
+      "children": [
+        {
+          "id": "u4-ident",
+          "label": "Identity & references",
+          "symbol": "IDs",
+          "doc": "Stable identifiers and cross-links to templates/nodes.",
+          "children": [
+            {
+              "id": "u4-id",
+              "label": "id",
+              "symbol": "id",
+              "doc": "Primary identifier for the item.",
+              "children": []
+            },
+            {
+              "id": "u4-convtmpl",
+              "label": "conversation_template_id",
+              "symbol": "conversation_template_id",
+              "doc": "Associates item with a template definition.",
+              "children": []
+            },
+            {
+              "id": "u4-gizmo",
+              "label": "gizmo_id",
+              "symbol": "gizmo_id",
+              "doc": "Links item to a gizmo/agent/tool configuration.",
+              "children": []
+            },
+            {
+              "id": "u4-sugar",
+              "label": "sugar_item_id / sugar_item_visible",
+              "symbol": "sugar_*",
+              "doc": "Auxiliary IDs/visibility toggles (likely UI or feature-flag related).",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-content",
+          "label": "Human-facing fields",
+          "symbol": "title/snippet",
+          "doc": "Text used for UI lists and previews.",
+          "children": [
+            {
+              "id": "u4-title",
+              "label": "title",
+              "symbol": "title",
+              "doc": "Display title for the item.",
+              "children": []
+            },
+            {
+              "id": "u4-snippet",
+              "label": "snippet",
+              "symbol": "snippet",
+              "doc": "Short preview/summary, used in list views.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-time",
+          "label": "Timestamps",
+          "symbol": "*_time",
+          "doc": "Lifecycle timestamps for creation, updates, and pinning.",
+          "children": [
+            {
+              "id": "u4-create",
+              "label": "create_time",
+              "symbol": "create_time",
+              "doc": "When the item was created.",
+              "children": []
+            },
+            {
+              "id": "u4-update",
+              "label": "update_time",
+              "symbol": "update_time",
+              "doc": "When the item was last updated.",
+              "children": []
+            },
+            {
+              "id": "u4-pin",
+              "label": "pinned_time",
+              "symbol": "pinned_time",
+              "doc": "When the item was pinned (if pinned).",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-flags",
+          "label": "State flags",
+          "symbol": "booleans",
+          "doc": "UI and memory behavior toggles.",
+          "children": [
+            {
+              "id": "u4-arch",
+              "label": "is_archived",
+              "symbol": "is_archived",
+              "doc": "Whether the item is archived/hidden from active views.",
+              "children": []
+            },
+            {
+              "id": "u4-star",
+              "label": "is_starred",
+              "symbol": "is_starred",
+              "doc": "Whether the item is starred/favorited.",
+              "children": []
+            },
+            {
+              "id": "u4-dnr",
+              "label": "is_do_not_remember",
+              "symbol": "is_do_not_remember",
+              "doc": "Whether memory should be excluded for this item.",
+              "children": []
+            },
+            {
+              "id": "u4-silo",
+              "label": "is_siloed",
+              "symbol": "is_siloed",
+              "doc": "Whether the item is siloed from broader context sharing.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-scope",
+          "label": "Context scopes",
+          "symbol": "context_scopes / context_scopes_v2",
+          "doc": "Defines which context namespaces/subscopes apply and how memory/visibility behave across workspaces.",
+          "children": [
+            {
+              "id": "u4-scopev1",
+              "label": "context_scopes[]",
+              "symbol": "context_scopes",
+              "doc": "Primary scope list. Each entry includes namespace, sub-scope, and workspace binding.",
+              "children": [
+                {
+                  "id": "u4-scope-fields",
+                  "label": "scope fields",
+                  "symbol": "{scope_namespace, sub_scope, workspace_id}",
+                  "doc": "Identifies where this item belongs and what context it can access.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "u4-scopev2",
+              "label": "context_scopes_v2",
+              "symbol": "context_scopes_v2",
+              "doc": "A newer/alternate scope representation (may be redundant or migration-related). In the provided text it appears sometimes empty/malformed, suggesting partial serialization.",
+              "children": []
+            },
+            {
+              "id": "u4-memscope",
+              "label": "memory_scope",
+              "symbol": "memory_scope",
+              "doc": "Controls what parts of this item feed into long-term memory/recall.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-url",
+          "label": "URL safety lists",
+          "symbol": "safe_urls/blocked_urls",
+          "doc": "Allow/deny lists for URLs associated with the item, likely used by the system when fetching or previewing external content.",
+          "children": [
+            {
+              "id": "u4-safe",
+              "label": "safe_urls",
+              "symbol": "safe_urls",
+              "doc": "Explicitly allowed URLs.",
+              "children": []
+            },
+            {
+              "id": "u4-block",
+              "label": "blocked_urls",
+              "symbol": "blocked_urls",
+              "doc": "Explicitly blocked URLs.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "u4-mapping",
+          "label": "Mapping & node linkage",
+          "symbol": "mapping/current_node",
+          "doc": "Links the item to an internal graph/node representation for navigation and state.",
+          "children": [
+            {
+              "id": "u4-mapping-field",
+              "label": "mapping",
+              "symbol": "mapping",
+              "doc": "Mapping payload; may map external identifiers to internal node IDs.",
+              "children": []
+            },
+            {
+              "id": "u4-current",
+              "label": "current_node",
+              "symbol": "current_node",
+              "doc": "Pointer to the currently active node in the item's internal structure.",
+              "children": []
+            },
+            {
+              "id": "u4-origin",
+              "label": "conversation_origin",
+              "symbol": "conversation_origin",
+              "doc": "Where the item came from (imported, created, shared, etc.).",
+              "children": []
+            },
+            {
+              "id": "u4-async",
+              "label": "async_status",
+              "symbol": "async_status",
+              "doc": "Indicates background processing state (e.g., indexing, enrichment).",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4-rel",
+      "label": "How this relates to other trees",
+      "symbol": "integration",
+      "doc": "This item schema is the metadata envelope that higher-level 'WHAM' task/turn trees reference when they attach to a conversation template, current node, and context scopes.",
+      "children": []
+    }
+  ]
+}

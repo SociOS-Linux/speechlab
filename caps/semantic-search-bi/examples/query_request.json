@@ -1,0 +1,18 @@
+{
+  "query": "disputed charge acme 512.19",
+  "k": 10,
+  "hybrid": {
+    "enable": true,
+    "lexical_weight": 0.35,
+    "vector_weight": 0.65
+  },
+  "filters": {
+    "case_id": "C-1001"
+  },
+  "return_fields": [
+    "doc_id",
+    "score",
+    "snippet",
+    "metadata"
+  ]
+}

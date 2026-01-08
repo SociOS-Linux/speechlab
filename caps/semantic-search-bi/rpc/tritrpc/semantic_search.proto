@@ -1,0 +1,19 @@
+syntax = "proto3";
+package tritrpc.semanticsearch.v1;
+
+// Triune RPC note:
+// We keep payloads as bytes here to allow Schema Salad / Avro / JSON-LD variants.
+// The canonical validation is performed against schemas/* referenced in capd/capability.yaml.
+
+service SemanticSearchService {
+  rpc UpsertDocuments (TriuneEnvelope) returns (TriuneEnvelope);
+  rpc Query           (TriuneEnvelope) returns (TriuneEnvelope);
+  rpc Explain         (TriuneEnvelope) returns (TriuneEnvelope);
+  rpc Health          (TriuneEnvelope) returns (TriuneEnvelope);
+}
+
+message TriuneEnvelope {
+  string content_type = 1; // e.g. "application/json"
+  bytes  payload      = 2; // schema-bound request/response JSON
+  bytes  evidence     = 3; // schema-bound evidence envelope JSON
+}

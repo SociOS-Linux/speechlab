@@ -1,0 +1,22 @@
+{
+  "documents": [
+    {
+      "doc_id": "acct:123:note:1",
+      "text": "Customer called about disputed charge. Merchant: ACME.",
+      "metadata": {
+        "case_id": "C-1001",
+        "type": "call_note"
+      }
+    },
+    {
+      "doc_id": "acct:123:txn:9",
+      "text": "Transaction $512.19 to ACME Online 2026-01-02",
+      "metadata": {
+        "case_id": "C-1001",
+        "type": "transaction"
+      }
+    }
+  ],
+  "index": "default",
+  "mode": "upsert"
+}
