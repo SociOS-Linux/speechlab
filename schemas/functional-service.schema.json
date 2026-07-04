@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.socioprophet.org/functional-model-surfaces/functional-service.v1.json",
+  "title": "SocioProphet Functional Service Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "service",
+    "function",
+    "model",
+    "inputs",
+    "outputs",
+    "evals",
+    "governance",
+    "sourceosCarry"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "functional-service.v1" },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "ownerRepository", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]+$" },
+        "name": { "type": "string" },
+        "ownerRepository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "status": { "type": "string", "enum": ["draft", "experimental", "candidate", "approved", "deprecated"] },
+        "description": { "type": "string" }
+      }
+    },
+    "function": {
+      "type": "string",
+      "enum": [
+        "speech",
+        "ocr",
+        "image",
+        "video",
+        "translation",
+        "embedding",
+        "reranking",
+        "timeseries",
+        "graph",
+        "nlp",
+        "language-intelligence",
+        "routing",
+        "guardrail",
+        "agent-tool"
+      ]
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modelRef", "mutableStatePolicy"],
+      "properties": {
+        "modelRef": { "type": "string" },
+        "adapterRefs": { "type": "array", "items": { "type": "string" } },
+        "runtime": { "type": "string" },
+        "mutableStatePolicy": { "type": "string", "enum": ["forbidden-in-sourceos", "lab-only", "governed-runtime-only"] }
+      }
+    },
+    "inputs": { "type": "array", "items": { "type": "string" } },
+    "outputs": { "type": "array", "items": { "type": "string" } },
+    "evals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "references"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "references": { "type": "array", "items": { "type": "string" } },
+        "minimumPromotionGate": { "type": "string" }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ledgerRequired", "guardrailRequired", "routingRequired"],
+      "properties": {
+        "ledgerRequired": { "type": "boolean" },
+        "guardrailRequired": { "type": "boolean" },
+        "routingRequired": { "type": "boolean" },
+        "policyRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "sourceosCarry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "carriesMutableModelState", "clientRefRequired"],
+      "properties": {
+        "allowed": { "type": "boolean" },
+        "carriesMutableModelState": { "type": "boolean", "const": false },
+        "clientRefRequired": { "type": "boolean" },
+        "launchProfileRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

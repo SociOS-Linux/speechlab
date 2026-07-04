@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.socioprophet.org/functional-model-surfaces/repo-maturity.v1.json",
+  "title": "SocioProphet Repository Maturity Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "repository",
+    "plane",
+    "status",
+    "maturity",
+    "owners",
+    "canonicality",
+    "validation",
+    "integrations"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "repo-maturity.v1"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "plane": {
+      "type": "string",
+      "enum": [
+        "standards",
+        "runtime",
+        "governance",
+        "sourceos-carry",
+        "socios-lab",
+        "workspace-governance",
+        "cli",
+        "research",
+        "archive"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "experimental", "incubating", "archival", "deprecated"]
+    },
+    "maturity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "targetLevel", "evidence"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["M0", "M1", "M2", "M3", "M4", "M5"]
+        },
+        "targetLevel": {
+          "type": "string",
+          "enum": ["M1", "M2", "M3", "M4", "M5"]
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "owners": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "canonicality": {
+      "type": "string",
+      "enum": ["canonical", "reference", "experimental", "archive", "stub"]
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commands", "ciRequired"],
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ciRequired": { "type": "boolean" },
+        "lastKnownStatus": {
+          "type": "string",
+          "enum": ["unknown", "passing", "failing", "not-configured"]
+        }
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "relationship"],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "relationship": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "nextActions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

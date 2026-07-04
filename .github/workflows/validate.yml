@@ -1,17 +1,20 @@
 name: validate
-
 on:
   push:
   pull_request:
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate speechlab
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install strict-validation deps
+        run: pip install pyyaml jsonschema
+      - name: make validate (spine + functional-service, offline)
         run: make validate
-      - name: Offline smoke test
+      - name: make smoke (deterministic offline)
         run: make smoke
-      - name: Emit SourceOS carry fixture
-        run: make carry
+      - name: Strict jsonschema validation of maturity record
+        run: python3 tools/validate_maturity.py schemas/repo-maturity.schema.json repo.maturity.yaml

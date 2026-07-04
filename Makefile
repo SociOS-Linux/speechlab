@@ -1,7 +1,10 @@
-.PHONY: validate smoke carry
+.PHONY: validate validate-spine smoke carry
 
-validate:
+validate: validate-spine
 	python3 tools/validate.py
+
+validate-spine:
+	python3 tools/validate_spine.py
 
 smoke:
 	python3 tools/smoke.py
