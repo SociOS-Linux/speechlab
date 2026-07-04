@@ -1,0 +1,48 @@
+schemaVersion: repo-maturity.v1
+repository: SociOS-Linux/speechlab
+plane: socios-lab
+status: experimental
+canonicality: reference
+owners:
+  - SociOS-Linux
+maturity:
+  level: M2
+  targetLevel: M3
+  evidence:
+    - README.md states lab purpose, lab-only boundary, and integration points.
+    - service-manifest/functional-service.v1.json conforms to functional-service.v1.
+    - lab.manifest.json enumerates 4 governed lab surfaces.
+    - make validate exits 0 (offline, deterministic).
+    - CI runs make validate + strict jsonschema validation on every push/PR.
+validation:
+  commands:
+    - make validate
+    - make smoke
+  ciRequired: true
+  lastKnownStatus: passing
+integrations:
+  - repository: SocioProphet/functional-model-surfaces
+    relationship: emits functional-service.v1 manifests
+    required: true
+  - repository: SocioProphet/model-governance-ledger
+    relationship: sends promotion evidence
+    required: true
+  - repository: SocioProphet/sociosphere
+    relationship: registers maturity/evidence status
+    required: true
+  - repository: SocioProphet/holmes
+    relationship: provides the speech functional surface to Holmes
+    required: false
+  - repository: SocioProphet/model-router
+    relationship: routable governed surface
+    required: false
+  - repository: SocioProphet/guardrail-fabric
+    relationship: guardrail policy enforcement
+    required: false
+  - repository: SourceOS-Linux/sourceos-model-carry
+    relationship: disabled-by-default SourceOS carry reference
+    required: false
+nextActions:
+  - Add negative fixtures under fixtures/invalid/ (>=2 per schema) to reach M3.
+  - Wire promotion evidence into SocioProphet/model-governance-ledger.
+  - Register maturity record with SocioProphet/sociosphere workspace-inventory.

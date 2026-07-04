@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "lab.manifest.v1",
+  "lab": "speechlab",
+  "repository": "SociOS-Linux/speechlab",
+  "modality": "speech",
+  "boundary": "lab-only: emits governed functional-service manifests and evaluation evidence for downstream platform services; must not self-promote models into production and must not carry mutable model state into SourceOS image builds.",
+  "surfaces": [
+    "speech-transcription",
+    "speaker-diarization",
+    "voice-activity-detection",
+    "audio-evidence-extraction"
+  ],
+  "serviceManifests": [
+    "service-manifest/functional-service.v1.json"
+  ],
+  "governanceHandoff": {
+    "ledger": "SocioProphet/model-governance-ledger",
+    "guardrail": "SocioProphet/guardrail-fabric",
+    "router": "SocioProphet/model-router",
+    "productSurface": "SocioProphet/holmes",
+    "sourceosCarry": "SourceOS-Linux/sourceos-model-carry"
+  },
+  "sourceosCarry": {
+    "allowed": true,
+    "carriesMutableModelState": false,
+    "clientRefRequired": true
+  }
+}
