@@ -1,0 +1,17 @@
+{
+  "query": "governed semantic search",
+  "candidates": [
+    {
+      "id": "holmes",
+      "text": "Holmes investigates evidence with semantic search and governed retrieval."
+    },
+    {
+      "id": "weather",
+      "text": "The weather report predicts rain and wind tomorrow."
+    },
+    {
+      "id": "sourceos",
+      "text": "SourceOS carries signed service references and local-only model profiles."
+    }
+  ]
+}

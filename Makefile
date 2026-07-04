@@ -1,20 +1,10 @@
-.PHONY: diar-bootstrap diar-rebuild diar-verify diar-smoketest diar-shell
+.PHONY: validate smoke carry
 
-diar-bootstrap:
-    ./scripts/bootstrap_brew_diar.sh
-
-diar-rebuild:
-    ./scripts/rebuild_diar_env.sh
-
-diar-verify:
-    ./scripts/verify_diar_env.sh
-
-diar-smoketest:
-    source .venv-diar/bin/activate && ./scripts/smoketest_audioio.sh
-
-diar-shell:
-    ./scripts/diar_shell.sh
-
-.PHONY: validate
 validate:
-	./tools/validate.sh
+	python3 tools/validate.py
+
+smoke:
+	python3 tools/smoke.py
+
+carry:
+	python3 tools/emit_sourceos_carry.py > examples/sourceos-carry.speechlab.json

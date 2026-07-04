@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "speechlab.smoke-receipt.v0",
+  "kind": "SmokeReceipt",
+  "serviceId": "speechlab.holmes.speech-pilot",
+  "runId": "urn:socioprophet:speechlab:smoke:offline-lexical-v0",
+  "mode": "offline-deterministic",
+  "networkRequired": false,
+  "modelWeightsIncluded": false,
+  "mutableAdapterIncluded": false,
+  "inputRef": "examples/smoke-input.json",
+  "outputRef": "examples/smoke-output.json",
+  "assertions": [
+    {
+      "id": "top-result-holmes",
+      "description": "Holmes candidate ranks first for governed semantic search query.",
+      "pass": true
+    },
+    {
+      "id": "no-network",
+      "description": "Smoke runner uses only Python standard library and local fixtures.",
+      "pass": true
+    },
+    {
+      "id": "sourceos-no-mutable-state",
+      "description": "SourceOS carry path carries no model weights or mutable adapters.",
+      "pass": true
+    }
+  ],
+  "governanceRefs": [
+    "SocioProphet/holmes",
+    "SocioProphet/functional-model-surfaces",
+    "SocioProphet/model-governance-ledger",
+    "SocioProphet/model-router",
+    "SourceOS-Linux/sourceos-model-carry",
+    "SocioProphet/sociosphere"
+  ]
+}
