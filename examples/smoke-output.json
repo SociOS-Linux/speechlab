@@ -1,0 +1,22 @@
+{
+  "serviceId": "speechlab.holmes.speech-pilot",
+  "query": "governed semantic search",
+  "ranking": [
+    {
+      "id": "holmes",
+      "score": 3,
+      "matchedTerms": ["governed", "search", "semantic"]
+    },
+    {
+      "id": "sourceos",
+      "score": 0,
+      "matchedTerms": []
+    },
+    {
+      "id": "weather",
+      "score": 0,
+      "matchedTerms": []
+    }
+  ],
+  "pass": true
+}

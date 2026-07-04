@@ -9,5 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate
+      - name: Validate speechlab
         run: make validate
+      - name: Offline smoke test
+        run: make smoke
+      - name: Emit SourceOS carry fixture
+        run: make carry
