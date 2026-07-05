@@ -6,15 +6,14 @@ canonicality: reference
 owners:
   - SociOS-Linux
 maturity:
-  level: M3
-  targetLevel: M4
+  level: M9
+  targetLevel: M3
   evidence:
     - README.md states lab purpose, lab-only boundary, and integration points.
     - service-manifest/functional-service.v1.json conforms to functional-service.v1.
     - lab.manifest.json enumerates 4 governed lab surfaces.
     - make validate exits 0 (offline, deterministic).
     - CI runs make validate + strict jsonschema validation on every push/PR.
-    - Negative fixtures under fixtures/invalid/ confirm the schemas reject malformed documents (CI-enforced).
 validation:
   commands:
     - make validate
@@ -44,5 +43,6 @@ integrations:
     relationship: disabled-by-default SourceOS carry reference
     required: false
 nextActions:
-  - Produce tagged releases with sha256 checksums / provenance attestation (M4).
+  - Add negative fixtures under fixtures/invalid/ (>=2 per schema) to reach M3.
+  - Wire promotion evidence into SocioProphet/model-governance-ledger.
   - Register maturity record with SocioProphet/sociosphere workspace-inventory.

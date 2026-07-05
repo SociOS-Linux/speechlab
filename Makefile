@@ -1,4 +1,4 @@
-.PHONY: validate validate-spine smoke carry
+.PHONY: validate validate-spine validate-negative smoke carry
 
 validate: validate-spine
 	python3 tools/validate.py
@@ -11,3 +11,6 @@ smoke:
 
 carry:
 	python3 tools/emit_sourceos_carry.py > examples/sourceos-carry.speechlab.json
+
+validate-negative:
+	python3 tools/run_negative_fixtures.py

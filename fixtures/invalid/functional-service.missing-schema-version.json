@@ -1,0 +1,53 @@
+{
+  "service": {
+    "id": "speechlab.holmes.speech-pilot",
+    "name": "SpeechLab Holmes Speech Pilot",
+    "ownerRepository": "SociOS-Linux/speechlab",
+    "status": "experimental",
+    "description": "Offline deterministic speech functional surface emitted by speechlab for governed promotion."
+  },
+  "function": "speech",
+  "model": {
+    "modelRef": "urn:socioprophet:functional-model:speechlab:deterministic-speech:v0",
+    "adapterRefs": [],
+    "runtime": "python-stdlib-offline-smoke",
+    "mutableStatePolicy": "forbidden-in-sourceos"
+  },
+  "inputs": [
+    "audio/query",
+    "audio/corpus"
+  ],
+  "outputs": [
+    "speech/features",
+    "ranking/candidates",
+    "evidence/smoke-receipt"
+  ],
+  "evals": {
+    "required": true,
+    "references": [
+      "examples/smoke-input.json",
+      "examples/smoke-output.json",
+      "evidence/smoke-receipt.example.json"
+    ],
+    "minimumPromotionGate": "candidate requires signed eval and dataset provenance"
+  },
+  "governance": {
+    "ledgerRequired": true,
+    "guardrailRequired": true,
+    "routingRequired": true,
+    "policyRefs": [
+      "SocioProphet/model-governance-ledger",
+      "SocioProphet/guardrail-fabric",
+      "SocioProphet/model-router",
+      "SocioProphet/holmes"
+    ]
+  },
+  "sourceosCarry": {
+    "allowed": true,
+    "carriesMutableModelState": false,
+    "clientRefRequired": true,
+    "launchProfileRefs": [
+      "urn:srcos:model-carry:functional-service:speechlab-holmes-pilot"
+    ]
+  }
+}
