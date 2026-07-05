@@ -21,3 +21,5 @@ jobs:
         run: make smoke
       - name: Strict jsonschema validation of maturity record
         run: python3 tools/validate_maturity.py schemas/repo-maturity.schema.json repo.maturity.yaml
+      - name: Negative fixtures (must be rejected)
+        run: python3 tools/run_negative_fixtures.py
