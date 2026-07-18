@@ -22,6 +22,6 @@ jobs:
         with:
           languages: python
           build-mode: none
-      - uses: github/codeql-action/analyze@411c4c9a36b3fca4d674f06b6396b2c6d23522c6 # v3
+      - uses: github/codeql-action/analyze@7188fc363630916deb702c7fdcf4e481b751f97a # v3
         with:
           category: "/language:python"
